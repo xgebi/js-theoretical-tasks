@@ -6,30 +6,51 @@
  */
 
 let prompt = require("./libs/prompt.js");
-let word1;
-let word2;
+let word1 = {};
+let word2 = {};
 
 prompt.prompt("What is the first word? ").then(first => {
-  word1 = analyzeWord(first);
-  prompt.prompt("What is the second word? ").then(second => {
-    word2 = analyzeWord(second);
-  });
-});
+  let letters = first.toLowerCase().split("");
 
-function analyzeWord(word) {
-  let result = {};
-  if (word.length === 0) return result;
-  letters = word.toLowerCase().split("");
-
-  letters.array.forEach(letter => {
+  letters.forEach(letter => {
     if (letter.match(/[a-z]/)) {
-      if (result[letter]) {
-        result[letter]++;
+      if (word1[letter]) {
+        word1[letter]++;
       } else {
-        result[letter] = 1;
+        word1[letter] = 1;
       }
     }
   });
 
-  return result;
-}
+  prompt.prompt("What is the second word? ").then(second => {
+    let letters = second.toLowerCase().split("");
+
+    letters.forEach(letter => {
+      if (letter.match(/[a-z]/)) {
+        if (word2[letter]) {
+          word2[letter]++;
+        } else {
+          word2[letter] = 1;
+        }
+      }
+    });
+
+    let same = true;
+
+    if (Object.keys(word1).length === Object.keys(word2).length) {
+      Object.keys(word1).forEach(key => {
+        if (word1[key] !== word2[key]) {
+          same = false;
+        }
+      });
+      if (same) {
+        console.log("They are anagrams");
+      } else {
+        console.log("Different words");
+      }
+    } else {
+      console.log("Different words");
+    }
+    process.exit();
+  });
+});
