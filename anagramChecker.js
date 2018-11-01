@@ -3,6 +3,11 @@
  *
  * @author Sarah Gebauer
  * @date 11/1/18
+ *
+ * Description
+ *
+ * This piece of code checks if two words are anagrams. Words can consist only from letters, spaces and other characters aren't allowed. There might be an easier solution by transforming two object into JSON strings. My main reason not to do it that way is because I couldn't find whether JSON.stringify orders properties first consistently in all JavaScript engines. Also this way it was fun.
+ *
  */
 
 let prompt = require("./libs/prompt.js");
