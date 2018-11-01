@@ -19,6 +19,9 @@ prompt.prompt("What is the first word? ").then(first => {
       } else {
         word1[letter] = 1;
       }
+    } else {
+      console.log("Invalid characters in the word");
+      process.exit();
     }
   });
 
@@ -32,6 +35,9 @@ prompt.prompt("What is the first word? ").then(first => {
         } else {
           word2[letter] = 1;
         }
+      } else {
+        console.log("Invalid characters in the word");
+        process.exit();
       }
     });
 
