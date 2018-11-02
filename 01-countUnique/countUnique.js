@@ -1,4 +1,7 @@
 function countUniqueValues(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
   let unique = [];
   let i = 0;
   unique.push(arr[i]);
@@ -14,4 +17,4 @@ function countUniqueValues(arr) {
   return unique;
 }
 
-console.log(countUniqueValues([1, 1, 2, 3, 3, 3, 4, 5, 6, 6]));
+console.log(countUniqueValues([1, 2]));
