@@ -10,28 +10,32 @@
  *
  */
 
-let prompt = require("./libs/prompt.js");
+let prompt = require("../libs/prompt.js");
 let word1 = {};
 let word2 = {};
 
 prompt.prompt("What is the first word? ").then(first => {
-  let letters = first.toLowerCase().split("");
-
-  letters.forEach(letter => {
-    if (letter.match(/[a-z]/)) {
-      if (word1[letter]) {
-        word1[letter]++;
-      } else {
-        word1[letter] = 1;
-      }
-    } else {
-      console.log("Invalid characters in the word");
+  prompt.prompt("What is the second word? ").then(second => {
+    if (first.length !== second.length) {
+      console.log("Different words");
       process.exit();
     }
-  });
+    let letters = first.toLowerCase().split("");
 
-  prompt.prompt("What is the second word? ").then(second => {
-    let letters = second.toLowerCase().split("");
+    letters.forEach(letter => {
+      if (letter.match(/[a-z]/)) {
+        if (word1[letter]) {
+          word1[letter]++;
+        } else {
+          word1[letter] = 1;
+        }
+      } else {
+        console.log("Invalid characters in the word");
+        process.exit();
+      }
+    });
+
+    letters = second.toLowerCase().split("");
 
     letters.forEach(letter => {
       if (letter.match(/[a-z]/)) {
